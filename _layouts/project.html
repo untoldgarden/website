@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ page.description }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page.title }} | {{ site.title }}"/>
+    <meta property="og:description" content="{{ page.description }}"/>
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+    <meta property="og:site_name" content="{{ site.title }}"/>
+    <meta property="og:type" content="website"/>
+    {% if page.og_image %}
+    <meta property="og:image" content="{{ page.og_image }}"/>
+    <meta property="og:image:width" content="{{ page.og_image_width | default: '1920' }}"/>
+    <meta property="og:image:height" content="{{ page.og_image_height | default: '1080' }}"/>
+    {% endif %}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ page.title }} | {{ site.title }}"/>
+    <meta name="twitter:description" content="{{ page.description }}"/>
+    {% if page.og_image %}
+    <meta name="twitter:image" content="{{ page.og_image }}"/>
+    {% endif %}
+    
+    <link rel="stylesheet" href="/assets/main.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin: 2rem 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="icons-container"></div>
+    <button id="backButton" aria-label="Go back">
+        <svg class="icon-back">
+            <use xlink:href="#icon-arrow-left"></use>
+        </svg>
+    </button>
+
+    <div class="container">
+        {{ content | replace: '<div class="vimeo">', '<div class="video-wrapper">' }}
+        <div class="copyright">© Untold Garden 2025</div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        fetch('/assets/icons.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('icons-container').innerHTML = data;
+            });
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>
