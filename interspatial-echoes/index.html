@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interspatial Echoes | Untold Garden</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Det långa sorlet (Interspatial Echoes) is equal parts social network and public artwork. It is a virtual communication platform that can only be visited on urban squares around Sweden, displaying messages in a large flowing cloud above the visitor.">
+    <link rel="canonical" href="https://www.untold.garden/interspatial-echoes/"/>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Interspatial Echoes | Untold Garden"/>
+    <meta property="og:description" content="Det långa sorlet (Interspatial Echoes) is equal parts social network and public artwork. It is a virtual communication platform that can only be visited on urban squares around Sweden, displaying messages in a large flowing cloud above the visitor."/>
+    <meta property="og:url" content="https://www.untold.garden/interspatial-echoes/"/>
+    <meta property="og:site_name" content="Untold Garden"/>
+    <meta property="og:type" content="website"/>
+    
+    <meta property="og:image" content="/images/social/interspatial-echoes.webp"/>
+    <meta property="og:image:width" content="1920"/>
+    <meta property="og:image:height" content="1080"/>
+    
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Interspatial Echoes | Untold Garden"/>
+    <meta name="twitter:description" content="Det långa sorlet (Interspatial Echoes) is equal parts social network and public artwork. It is a virtual communication platform that can only be visited on urban squares around Sweden, displaying messages in a large flowing cloud above the visitor."/>
+    
+    <meta name="twitter:image" content="/images/social/interspatial-echoes.webp"/>
+    
+    
+    <link rel="stylesheet" href="/assets/main.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin: 2rem 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="icons-container"></div>
+    <button id="backButton" aria-label="Go back">
+        <svg class="icon-back">
+            <use xlink:href="#icon-arrow-left"></use>
+        </svg>
+    </button>
+
+    <div class="container">
+        <h1 id="det-långa-sorlet-interspatial-echoes">Det långa sorlet (Interspatial Echoes)</h1>
+
+<p>Det långa sorlet (Interspatial Echoes) is equal parts social network and public artwork. It is a virtual communication platform that can only be visited on urban squares around Sweden, displaying messages in a large flowing cloud above the visitor. You can participate in the artwork by writing your own messages and reading others, thereby influencing the content and form of the word cloud. The artwork connects modern communication technology with the square’s historic role as a place for politics and gossip and ties together all of Sweden’s squares into one.</p>
+
+<div class="video-wrapper">
+<iframe src="https://player.vimeo.com/video/864454457?h=3f006700ac" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<p>The project weaves together three different social aspects; digital communication, the square, and public art. Together these form a sculpture that is erected together with a local organization on a specific town square in all of Sweden’s 1979 towns and cities, connecting them through a virtual layer.</p>
+
+<p>The sculpture is experienced through mobile-based augmented reality (AR) in the participants’ smartphones. It consists of text produced by the participants themselves: opinions, poetry and loose thoughts. These messages constitute the building blocks of the sculpture, organised into a cloud of words represented in 3D through AR. The messages are spatially organized within the cloud according to physical laws translated into the world of the attention economy: the attentional weight of a text, ie how much it has been read and answered, affects its gravitational weight within the sculpture, which determines how the texts are positioned in relation to each other.</p>
+
+<p>The artwork is realized with funding from <a href="https://www.konstnarsnamnden.se/stipendier-och-bidrag/kulturbryggan/">Kulturbryggan</a>.</p>
+
+<p><em>Interspatial Echoes premiered at Vävda Rum, Sweden’s first country-wide art exhibition in augmented reality, which ran from May 20th to September 30th 2023.</em></p>
+
+<p><a href="https://news.untold.garden/interspatial-echoes-at-folk/"><strong>A longer text about Interspatial Echoes in our newsletter</strong></a></p>
+
+<p><img src="/assets/images/interspatial-echoes.webp" alt="Interspatial Echoes, by Untold Garden 2023" />
+<img src="/assets/images/interspatial-echoes-2.webp" alt="Interspatial Echoes, by Untold Garden 2023" /></p>
+
+        <div class="copyright">© Untold Garden 2025</div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        fetch('/assets/icons.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('icons-container').innerHTML = data;
+            });
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>
