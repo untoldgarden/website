@@ -18,6 +18,13 @@
             background-size: cover;
         }
 
+        @media screen and (max-width: 767px) {
+        #background-container {
+            background: url('/assets/images/fallback-bkg-mobile.webp') no-repeat center center;
+            background-size: cover;
+        }
+    }
+
         #video-background {
             position: absolute;
             right: 0;
@@ -46,8 +53,14 @@
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Use a different video url for mobile devices (based on window width)
+            var videoUrl = 'https://player.vimeo.com/video/1047666931?h=e9bd2fa0b0';
+            if (window.innerWidth < 768) { // adjust breakpoint as needed
+                videoUrl = 'https://player.vimeo.com/video/1061053405?h=3faa6f7993';
+            }
+
             var options = {
-                url: 'https://player.vimeo.com/video/1047666931?h=e9bd2fa0b0',
+                url: videoUrl,
                 loop: true,
                 autoplay: true,
                 background: true,
@@ -97,7 +110,7 @@
         </div>
         <div class="navigation">
             <a href="/projects">Projects</a>
-            <a href="news.untold.garden">News</a>
+            <a href="https://news.untold.garden">News</a>
             <a href="/about-us">About Us</a>
         </div>
     </div>
