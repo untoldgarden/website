@@ -245,9 +245,10 @@ a {
     body .header {
         flex-direction: column;
         align-items: flex-start;
-        padding-top: 15px;
+        padding-top: 50px;
         padding-bottom: 15px;
     }
+
 
     body .navigation {
         flex-direction: column;
@@ -261,9 +262,14 @@ a {
         padding: 3px 0;
         display: block;
         width: auto;
+        font-size: 1.1em;
+
     }
     
-    
+    .logo {
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
 
 
     #backButton {
