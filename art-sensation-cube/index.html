@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art/Sensation Cube | Untold Garden</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cube is a virtual exhibition space that challenged conventional notions of how we can show art in a 3D environment, promoting interaction with the environment in order to discover the work.">
+    <link rel="canonical" href="https://www.untold.garden/art-sensation-cube/"/>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Art/Sensation Cube | Untold Garden"/>
+    <meta property="og:description" content="Cube is a virtual exhibition space that challenged conventional notions of how we can show art in a 3D environment, promoting interaction with the environment in order to discover the work."/>
+    <meta property="og:url" content="https://www.untold.garden/art-sensation-cube/"/>
+    <meta property="og:site_name" content="Untold Garden"/>
+    <meta property="og:type" content="website"/>
+    
+    <meta property="og:image" content="/assets/images/art-sensation-cube-linnea-hansander2.webp"/>
+    <meta property="og:image:width" content="1920"/>
+    <meta property="og:image:height" content="1080"/>
+    
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Art/Sensation Cube | Untold Garden"/>
+    <meta name="twitter:description" content="Cube is a virtual exhibition space that challenged conventional notions of how we can show art in a 3D environment, promoting interaction with the environment in order to discover the work."/>
+    
+    <meta name="twitter:image" content="/assets/images/art-sensation-cube-linnea-hansander2.webp"/>
+    
+    
+    <link rel="stylesheet" href="/assets/main.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin: 2rem 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="icons-container"></div>
+    <button id="backButton" aria-label="Go back">
+        <svg class="icon-back">
+            <use xlink:href="#icon-arrow-left"></use>
+        </svg>
+    </button>
+
+    <div class="container">
+        <h1 id="artsensation-cube">Art/Sensation Cube</h1>
+
+<p>Cube is a virtual exhibition space that challenged conventional notions of how we can show art in a 3D environment, promoting interaction with the environment in order to discover the work. Sound elements are placed in different parts of the room and are activated by the visitor’s movements in the exhibition, while the light dramatizes the mood of the work. Visitors can discover more via links and create direct contact with the artists on social media or private messages. Cube is developed by Art/Sensation and Untold Garden.
+<br />
+<br />
+<strong><em>Ongoing exhibition:</em></strong><br /></p>
+
+<p>Plato and the Canary by Oona Libens, 2024<br />
+for Museet før Samtidskunst, Roskilde</p>
+
+<p><a href="https://cave.samtidskunst.dk/">Enter the exhibition</a></p>
+
+<p><img src="/assets/images/art-sensation-cube-oona-libens.webp" alt="Plato and the Canary, Oona Libens, 2024" /></p>
+
+<p><strong><em>Previous exhibitions:</em></strong></p>
+
+<p><img src="/assets/images/art-sensation-cube-linnea-hansander.webp" alt="Linnea Hansander in Art/Sensation Cube" />
+<img src="/assets/images/art-sensation-cube-linnea-hansander2.webp" alt="Linnea Hansander in Art/Sensation Cube" />
+<img src="/assets/images/art-sensation-cube-nitja.webp" alt="Nitja exhibition in Art/Sensation Cube" />
+<img src="/assets/images/art-sensation-cube-hard-feelings.webp" alt="Hard Feelings, Tim Hoibjerg, 2022" />
+<img src="/assets/images/art-sensation-cube-hard-feelings2.webp" alt="Hard Feelings, Tim Hoibjerg, 2022" /></p>
+
+        <div class="copyright">© Untold Garden 2025</div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        fetch('/assets/icons.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('icons-container').innerHTML = data;
+            });
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>
