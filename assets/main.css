@@ -4,12 +4,19 @@ html {
     margin: 0;
 
     font-family: 'Charter';
-    /* line-height: 27; */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+    max-width: 100%;
 }
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  #background-container {
+    overflow: hidden; /* Ensure no overflow */
+    max-width: 100vw; /* Limit width */
+}
 
 #video-background {
     position: fixed;
@@ -92,6 +99,7 @@ footer {
     z-index: 2;
     /* Ensures content is displayed above the video */
     color: white;
+    
 }
 
 h1,
@@ -168,19 +176,7 @@ main {
     box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
-/* Add a media query for smaller screens */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;       /* Slightly smaller padding on mobile */
-        font-size: 1em;      /* Slightly smaller font size on mobile */
-    }
-    
-    /* Ensure images don't overflow */
-    .container img {
-        max-width: 100%;
-        height: auto;
-    }
-}
+
 
 .container img {
     max-width: 100%;
@@ -236,13 +232,79 @@ a {
     margin-top: 150px;
     margin-bottom: 20px;
 }
-
+/* 
 @media (max-width: 600px) {
     #backButton {
         display: none;
     }
 }
+ */
+/* Add a media query for smaller screens */
+@media (max-width: 768px) {
 
+    body .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    body .navigation {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: 8px;
+        width: 100%;
+    }
+    
+    body .navigation a {
+        padding: 3px 0;
+        display: block;
+        width: auto;
+    }
+    
+    
+
+
+    #backButton {
+        display: block; /* Show the button instead of hiding it */
+        width: 50px; /* Smaller button */
+        height: 50px; /* Smaller button */
+        left: 0px; /* Align with content container padding */
+        top: 15px;
+        z-index: 1100;
+    }
+    
+    .icon-back {
+        width: 32px; /* Match smaller button size */
+        height: 32px;
+    }
+    
+    #icons-container {
+        height: 70px; 
+    }
+    
+    .container {
+        padding: 15px;       /* Slightly smaller padding on mobile */
+        font-size: 1em;      /* Slightly smaller font size on mobile */
+    }
+    .container img {
+        max-width: 100%;
+        height: auto;
+    }
+    /* Project list page - increase top spacing */
+    .projects-list {
+        padding-top: 30px;
+    }
+    
+    /* Landing page - stack navigation vertically */
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
 
 @font-face {
     font-family: 'Kievit';
