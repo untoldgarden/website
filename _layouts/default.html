@@ -14,13 +14,13 @@
             width: 100%;
             height: 100%;
             z-index: -100;
-            background: url('/assets/images/fallback-bg.webp') no-repeat center center;
+            background: url('{{ site.baseurl }}/assets/images/fallback-bg.webp') no-repeat center center;
             background-size: cover;
         }
 
         @media screen and (max-width: 767px) {
         #background-container {
-            background: url('/assets/images/fallback-bkg-mobile.webp') no-repeat center center;
+            background: url('{{ site.baseurl }}/assets/images/fallback-bkg-mobile.webp') no-repeat center center;
             background-size: cover;
         }
     }
