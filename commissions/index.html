@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commissions - Untold Garden</title>
-    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/website/assets/main.css">
     <style>
         .projects-container {
             position: absolute;
@@ -155,11 +155,12 @@
         </div>
 
         <div class="image-container">
-            <img class="project-image active" src="/assets/images/reach.webp" alt="Reach, by Untold Garden 2024">
+            <img class="project-image active" src="/website/assets/images/reach.webp" alt="Reach, by Untold Garden 2024">
         </div>
     </div>
 
     <script>
+        const baseurl = "/website";
         document.addEventListener('DOMContentLoaded', function () {
             const imageContainer = document.querySelector('.image-container');
             const defaultImage = document.querySelector('.project-image');
@@ -170,7 +171,7 @@
             projectItems.forEach(item => {
                 const imageName = item.dataset.image;
                 const img = new Image();
-                img.src = `/assets/images/${imageName}.webp`;
+                img.src = `${baseurl}/assets/images/${imageName}.webp`;
                 img.classList.add('project-image');
                 img.alt = item.querySelector('.project-title').textContent;
                 imageCache.set(imageName, img);
@@ -203,7 +204,7 @@
         });
     </script>
     <script>
-        fetch('/assets/icons.html')
+        fetch('/website/assets/icons.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('icons-container').innerHTML = data;
