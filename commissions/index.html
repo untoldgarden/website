@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commissions - Untold Garden</title>
-    <link rel="stylesheet" href="/website/assets/main.css">
+    <link rel="stylesheet" href="/assets/main.css">
     <style>
         .projects-container {
             position: absolute;
@@ -115,11 +115,11 @@
         <div class="projects-list">
             <div class="project-category">
                 <h2>Art</h2>
-                <a href="/website/reach" class="project-item" data-image="reach">
+                <a href="/reach" class="project-item" data-image="reach">
                     <div class="project-title">Reach</div>
                     <div class="project-description">Bronze, electronics, AR</div>
                 </a>
-                <a href="/website/interspatial-echoes" class="project-item" data-image="interspatial-echoes">
+                <a href="/interspatial-echoes" class="project-item" data-image="interspatial-echoes">
                     <div class="project-title">Interspatial Echoes</div>
                     <div class="project-description">Geospatial AR</div>
                 </a>
@@ -127,11 +127,11 @@
                     <div class="project-title">Garden of Ghost Flowers</div>
                     <div class="project-description">Performance, VR</div>
                 </a>
-                <a href="/website/apparatus-ludens" class="project-item" data-image="apparatus-ludens">
+                <a href="/apparatus-ludens" class="project-item" data-image="apparatus-ludens">
                     <div class="project-title">Apparatus Ludens</div>
                     <div class="project-description">Film, AI, Screen/Projection</div>
                 </a>
-                <a href="/website/unknown-cloud" class="project-item" data-image="unknown-cloud">
+                <a href="/unknown-cloud" class="project-item" data-image="unknown-cloud">
                     <div class="project-title">Unknown Cloud</div>
                     <div class="project-description">Geospatial AR</div>
                 </a>
@@ -147,7 +147,7 @@
                     <div class="project-title">Skiljelinjer</div>
                     <div class="project-description">AR tool for collaborative design and decision-making</div>
                 </a>
-                <a href="/website/art-sensation-cube" class="project-item" data-image="art-sensation-cube">
+                <a href="/art-sensation-cube" class="project-item" data-image="art-sensation-cube">
                     <div class="project-title">Art/Sensation Cube</div>
                     <div class="project-description">Web gallery</div>
                 </a>
@@ -155,12 +155,12 @@
         </div>
 
         <div class="image-container">
-            <img class="project-image active" src="/website/assets/images/reach.webp" alt="Reach, by Untold Garden 2024">
+            <img class="project-image active" src="/assets/images/reach.webp" alt="Reach, by Untold Garden 2024">
         </div>
     </div>
 
     <script>
-        const baseurl = "/website";
+        const baseurl = "";
         document.addEventListener('DOMContentLoaded', function () {
             const imageContainer = document.querySelector('.image-container');
             const defaultImage = document.querySelector('.project-image');
@@ -204,7 +204,7 @@
         });
     </script>
     <script>
-        fetch('/website/assets/icons.html')
+        fetch('/assets/icons.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('icons-container').innerHTML = data;
