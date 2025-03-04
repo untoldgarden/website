@@ -29,6 +29,8 @@ body {
     overflow: hidden;
     pointer-events: none;
     /* Makes the video non-interactive */
+    width: calc(100% + 2px); /* Add 2px total (1px each side) */
+    height: calc(100% + 2px); /* Add 2px total (1px each side) */
     margin: -1px; /* Negative margin to compensate */
 }
 
