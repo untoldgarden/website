@@ -29,6 +29,7 @@ body {
     overflow: hidden;
     pointer-events: none;
     /* Makes the video non-interactive */
+    margin: -1px; /* Negative margin to compensate */
 }
 
 /* This is crucial: It ensures that the iframe created by Vimeo fills the video-background container */
