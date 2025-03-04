@@ -61,6 +61,6 @@ The interspatiality of the individual sculptures allows them to maintain their c
 **Foundry:** [Rosengren Metallgjuteri](https://www.rngroup.se/gjuteri/)<br>
 
 ![Reach, by Untold Garden 2024, at British Art Fair](/assets/images/reach-jenny.webp)
-![Reach, by Untold Garden 2024, at British Art Fair](/assets/images/reach-baf-senior-lady.webp)
-![Reach, by Untold Garden 2024, at British Art Fair](/assets/images/reach-baf-hug.webp)
+![Reach, by Untold Garden 2024, at British Art Fair](/assets/images/Reach-BAF-senior-lady.webp)
+![Reach, by Untold Garden 2024, at British Art Fair](/assets/images/Reach-BAF-hug.webp)
 
