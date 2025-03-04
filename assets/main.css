@@ -214,7 +214,7 @@ a {
     width: 32px;  /* Add explicit width */
     height: 32px; /* Add explicit height */
     background-color: transparent;
-    color: #e0e0e0;
+    color: #000000;
     border: none;
     cursor: pointer;
     z-index: 1000;
