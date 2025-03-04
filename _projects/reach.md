@@ -36,7 +36,7 @@ In Reach, your touch is expanded into a virtual tactile language, a somatic poet
 
 The heat flow that this interconnectedness enables can be viewed through an augmented reality layer in Apple Vision Pro. This turns Reach into an intimate social network accessible only to those who can touch its physical manifestation, communicating solely through the medium of their own body heat.
 
-![Reach, by Untold Garden 2024, in-headset view](/assets/images/reach-screengrab.webp)
+![Reach, by Untold Garden 2024, in-headset view](/assets/images/Reach-Screengrab.webp)
 ![Reach, by Untold Garden 2024](/assets/images/reach-2.webp)
 
 ## Conceptual Background
