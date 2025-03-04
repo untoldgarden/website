@@ -293,7 +293,7 @@ a {
     }
     
     .container {
-        padding: 15px;       /* Slightly smaller padding on mobile */
+        padding: 30px;       /* Slightly smaller padding on mobile */
         font-size: 1em;      /* Slightly smaller font size on mobile */
     }
     .container img {
