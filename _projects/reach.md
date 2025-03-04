@@ -3,7 +3,7 @@ layout: project
 title: Reach
 description: Artwork that combines hand clay sculpting, traditional bronze casting, electronics, and spatial computing. The project consists of three bronze sculptures connected through a virtual layer in augmented reality (AR) experienced with Apple Vision Pro. When you touch one sculpture, your body heat is transmitted to the others, seen in AR, and felt through vibrations deep inside. Premiered at Saatchi Gallery, British Art Fair
 permalink: /reach/
-og_image: /images/social/reach-social.webp
+og_image: /assets/images/social/reach-social.webp
 og_image_width: 1920
 og_image_height: 1080
 ---
