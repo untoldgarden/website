@@ -5,7 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Untold Garden</title>
+    <title>Untold Garden</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks.">    
+    <link rel="canonical" href="https://untold.garden/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Untold Garden" />
+    <meta property="og:description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks." />
+    <meta property="og:url" content="https://untold.garden/" />
+    <meta property="og:site_name" content="Untold Garden" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://untold.garden/assets/images/reach.webp" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Untold Garden" />
+    <meta name="twitter:description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks." />
+    <meta name="twitter:image" content="https://untold.garden/assets/images/reach.webp" />
+
     <style>
         #background-container {
             position: fixed;
@@ -19,11 +40,11 @@
         }
 
         @media screen and (max-width: 767px) {
-        #background-container {
-            background: url('/assets/images/fallback-bkg-mobile.webp') no-repeat center center;
-            background-size: cover;
+            #background-container {
+                background: url('/assets/images/fallback-bkg-mobile.webp') no-repeat center center;
+                background-size: cover;
+            }
         }
-    }
 
         #video-background {
             position: absolute;
@@ -73,7 +94,7 @@
             player.setVolume(0);
 
             // Show video once it's loaded
-            player.ready().then(function() {
+            player.ready().then(function () {
                 document.getElementById('video-background').classList.add('loaded');
             });
         });
