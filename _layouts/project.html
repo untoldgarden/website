@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="author" content="Untold Garden">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="{{ site.baseurl }}/favicon.ico">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="{{ page.description }}">
     <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+    <meta name="keywords" content="{{ page.title }}, untold garden, art project, design project, technology, {{ page.keywords | default: 'digital art, installation' }}">
     
     <!-- Open Graph -->
     <meta property="og:title" content="{{ page.title }} | {{ site.title }}"/>
@@ -15,8 +19,9 @@
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}"/>
     <meta property="og:site_name" content="{{ site.title }}"/>
     <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US">
     {% if page.og_image %}
-    <meta property="og:image" content="{{ page.og_image | relative_url }}"/>
+    <meta property="og:image" content="{{ site.url }}{{ page.og_image }}"/>
     <meta property="og:image:width" content="{{ page.og_image_width | default: '1920' }}"/>
     <meta property="og:image:height" content="{{ page.og_image_height | default: '1080' }}"/>
     {% endif %}
@@ -25,8 +30,9 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="{{ page.title }} | {{ site.title }}"/>
     <meta name="twitter:description" content="{{ page.description }}"/>
+    <meta name="twitter:creator" content="@untoldgarden"/>
     {% if page.og_image %}
-    <meta name="twitter:image" content="{{ page.og_image }}"/>
+    <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}"/>
     {% endif %}
     
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
