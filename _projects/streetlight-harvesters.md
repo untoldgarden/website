@@ -17,6 +17,8 @@ We take artificial light for granted, it is a cornerstone of contemporary life w
 
 ![Streetlight Harvesters, by Untold Garden and Lundahl & Seitl 2025](/assets/images/streetlight-harvesters2.webp)
 
+## Conceptual Background
+
 The experience is an exploration of the intersection between digital and physical public space, enabled by Meadow, our platform for immersive experiences. The experience starts on your phone but quickly expands beyond the confines of your screen and into the urban infrastructure, visible through the surrounding streetlights.
 
 Our phones are merely the fruiting bodies of the web of invisible infrastructure that undergirds contemporary society. This infrastructure is invisible by design because our separation from it makes our responsibility for its adverse effects less strongly felt. By refocusing on this infrastructure we aim to make it and its effects visible to us, and to make us reflect on our own, as well as our infrastructure's role within the myriad of systems that make up nature.
