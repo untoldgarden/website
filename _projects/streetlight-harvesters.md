@@ -11,7 +11,7 @@ og_image_height: 1080
 
 # Streetlight Harvesters / Nattljusskördarna
 
-Streetlight Harvesters is a collaboration with artist duo Lundahl & Seitl that reflects on the vast glowing creature that our society births every night, illuminating the shaded side of the globe with artificial light, to then die at dawn's first light.
+>Streetlight Harvesters is a collaboration with artist duo Lundahl & Seitl that reflects on the vast glowing creature that our society births every night, illuminating the shaded side of the globe with artificial light, to then die at dawn's first light.
 
 We take artificial light for granted, it is a cornerstone of contemporary life without which it would not be recognisable. Some say that it was Arkwright's use of tallow candles, which allowed for nightly shifts in his mills, that sparked the Industrial Revolution at scale. But the light that keeps our streets safe affects other species, nocturnal moths can no longer navigate by the moon's light, and bats reduce their active time believing it is still daytime. The introduction of one system throws another out of balance.
 
