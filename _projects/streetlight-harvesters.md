@@ -23,6 +23,7 @@ The experience is an exploration of the intersection between digital and physica
 
 Our phones are merely the fruiting bodies of the web of invisible infrastructure that undergirds contemporary society. This infrastructure is invisible by design because our separation from it makes our responsibility for its adverse effects less strongly felt. By refocusing on this infrastructure we aim to make it and its effects visible to us, and to make us reflect on our own, as well as our infrastructure's role within the myriad of systems that make up nature.
 
+![Streetlight Harvesters light editor](/assets/images/streetlight-harvesters-editor.webp)
 
 ## Technical Approach
 
@@ -30,7 +31,6 @@ To create the experience, we needed an adaptive and cost-effective way to contro
 
 To be able to quickly test different iterations on-site, we created a custom tool to map each bulb to a geolocation, and create animated sequences and generative patterns that sync with audio. We also extended the capabilities of Meadow to be able to connect the experience on the participant's device with the modified streetlights. When no one is there to experience the piece, the lights are programmed to behave like normal streetlights, with occasional irregularities, inviting the inhabitants to the experience.
 
-![Streetlight Harvesters light editor](/assets/images/streetlight-harvesters-editor.webp)
 
 Many thanks to Nicolas, Henrik and Maarit from [Signify](https://www.signify.com/global), who kindly provided the smart lightbulbs from their [WiZ Pro](https://pro.wizconnected.com/) range and offered technical support.
 
