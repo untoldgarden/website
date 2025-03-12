@@ -8,6 +8,7 @@ og_image_width: 1920
 og_image_height: 1080
 ---
 
+![Streetlight Harvesters, by Untold Garden and Lundahl & Seitl 2025](/assets/images/streetlight-harvesters2.webp)
 
 # Streetlight Harvesters / Nattljusskördarna
 
@@ -15,7 +16,9 @@ og_image_height: 1080
 
 We take artificial light for granted, it is a cornerstone of contemporary life without which it would not be recognisable. Some say that it was Arkwright's use of tallow candles, which allowed for nightly shifts in his mills, that sparked the Industrial Revolution at scale. But the light that keeps our streets safe affects other species, nocturnal moths can no longer navigate by the moon's light, and bats reduce their active time believing it is still daytime. The introduction of one system throws another out of balance.
 
-![Streetlight Harvesters, by Untold Garden and Lundahl & Seitl 2025](/assets/images/streetlight-harvesters2.webp)
+<div class="vimeo">
+<iframe src="https://player.vimeo.com/video/1065143147?h=ead05d9cb0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Conceptual Background
 
