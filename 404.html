@@ -4,34 +4,91 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, touch-action=manipulation">
     <title>Untold Garden</title>
     <meta name="author" content="Untold Garden">
     <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index, follow">
     <link rel="icon" href="/favicon.ico">
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks.">    
-    <link rel="canonical" href="https://untold.garden/" />
-    <meta name="keywords" content="art, design, technology, augmented reality, virtual reality, installation art, digital art">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Untold Garden" />
+    <link rel="canonical" href="https://untold.garden/404.html" />
+    <meta name="keywords" content="untold garden, studio, collective, art, contemporary art, sculpture, public art, participatory art, vr, ar, xr, virtual reality, augmented reality, spatial computing, meadow, max celar, max čelar, jakob skote, micheal brewster, design, experiential art, spatial design, research">
+    <meta name="geo.region" content="GB" />
+    <meta name="geo.region" content="SE" />
+    <meta name="geo.placename" content="United Kingdom" />
+    <meta name="geo.placename" content="Sweden" />
+    <link rel="alternate" hreflang="en-gb" href="https://untold.garden/404.html" />
+    <link rel="alternate" hreflang="en-se" href="https://untold.garden/404.html" />
+    <link rel="alternate" hreflang="x-default" href="https://untold.garden/404.html" />
+    
+    <!-- Enhanced Open Graph -->
+    <meta property="og:title" content="Untold Garden - Art & Design Studio" />
     <meta property="og:description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks." />
-    <meta property="og:url" content="https://untold.garden" />
+    <meta property="og:url" content="https://untold.garden/404.html" />
     <meta property="og:site_name" content="Untold Garden" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://untold.garden/assets/images/reach.webp" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1080" />
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
+    <!-- Enhanced Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Untold Garden" />
+    <meta name="twitter:site" content="@untoldgarden" />
+    <meta name="twitter:creator" content="@untoldgarden" />
+    <meta name="twitter:title" content="Untold Garden - Art & Design Studio" />
     <meta name="twitter:description" content="Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks." />
     <meta name="twitter:image" content="https://untold.garden/assets/images/reach.webp" />
-    <meta name="twitter:creator" content="@untoldgarden" />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta property="article:author" content="Untold Garden" />
+    <meta property="article:publisher" content="https://untold.garden" />
+    <meta name="application-name" content="Untold Garden" />
+    <meta name="apple-mobile-web-app-title" content="Untold Garden" />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Untold Garden",
+      "alternateName": ["Untold Garden Studio", "Untold Garden Collective"],
+      "url": "https://untold.garden",
+      "logo": "https://untold.garden/assets/images/reach.webp",
+      "description": "Untold Garden is an art and design studio exploring new technologies. Their works include physical installations, virtual sculptures, interactive performances, artificial natures and experimental social networks.",
+      "foundingDate": "2020",
+      "areaServed": ["GB", "SE", "United Kingdom", "Sweden"],
+      "knowsAbout": ["Contemporary Art", "Public Art", "Participatory Art", "Virtual Reality", "Augmented Reality", "Spatial Computing", "Experiential Art", "Spatial Design", "Research"],
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Max Čelar",
+          "alternateName": "Max Celar"
+        },
+        {
+          "@type": "Person", 
+          "name": "Jakob Skote"
+        },
+        {
+          "@type": "Person",
+          "name": "Micheal Brewster"
+        }
+      ],
+      "sameAs": [
+        "https://twitter.com/untoldgarden",
+        "https://www.instagram.com/untoldgarden",
+        "https://uk.linkedin.com/company/untoldgarden",
+        "https://news.untold.garden"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "General Inquiries",
+        "url": "https://untold.garden/about-us/"
+      }
+    }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8EXHG4515Q"></script>
@@ -42,6 +99,20 @@
 
         gtag('config', 'G-8EXHG4515Q');
     </script>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://player.vimeo.com/api/player.js" as="script">
+    <link rel="preload" href="/assets/main.css" as="style">
+    <link rel="preload" href="/assets/images/fallback-bg.webp" as="image">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//player.vimeo.com">
+    <link rel="dns-prefetch" href="//vimeo.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Sitemap and RSS -->
+    <link rel="sitemap" type="application/xml" href="https://untold.garden/sitemap.xml">
+    <link type="application/atom+xml" rel="alternate" href="https://untold.garden/feed.xml" title="Untold Garden" />
 
     <style>
         #background-container {
