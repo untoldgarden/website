@@ -33,6 +33,16 @@
     <meta name="twitter:image" content="https://untold.garden/assets/images/reach.webp" />
     <meta name="twitter:creator" content="@untoldgarden" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8EXHG4515Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8EXHG4515Q');
+    </script>
+
     <style>
         #background-container {
             position: fixed;
@@ -62,7 +72,7 @@
             height: auto;
             background-size: cover;
             overflow: hidden;
-            transition: 1s opacity;
+            transition: 0.5s opacity;
             opacity: 0;
         }
 
@@ -93,15 +103,32 @@
                 background: true,
                 muted: true,
                 byline: false,
-                title: false
+                title: false,
+                quality: 'auto',
+                responsive: true,
+                speed: true,
+                pip: false,
+                controls: false
             };
 
             var player = new Vimeo.Player('video-background', options);
             player.setVolume(0);
 
-            // Show video once it's loaded
+            // Show video faster - as soon as it can play
+            player.on('play', function() {
+                document.getElementById('video-background').classList.add('loaded');
+            });
+
+            // Fallback for ready event
             player.ready().then(function () {
                 document.getElementById('video-background').classList.add('loaded');
+            });
+
+            // Start playing as soon as enough data is loaded
+            player.on('loadeddata', function() {
+                player.play().catch(function(error) {
+                    console.log('Autoplay failed:', error);
+                });
             });
         });
 
