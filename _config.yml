@@ -1,14 +1,29 @@
 title: Untold Garden
-email: your-email@example.com
+email: hello@untold.garden
 description: >- 
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Untold Garden is an art and design studio exploring new technologies. 
+  Their works include physical installations, virtual sculptures, 
+  interactive performances, artificial natures and experimental social networks.
 baseurl: "" 
 url: "https://untold.garden"
 layouts_dir: _layouts
 data_dir: _data
 permalink: pretty
+
+# SEO Settings
+author: Untold Garden
+twitter_username: untoldgarden
+social:
+  name: Untold Garden
+  links:
+    - https://twitter.com/untoldgarden
+    - https://www.instagram.com/untoldgarden
+    - https://uk.linkedin.com/company/untoldgarden
+    - https://news.untold.garden
+
+# Geographic targeting
+locale: en_GB
+lang: en
 
 # Collections
 collections:
@@ -23,3 +38,18 @@ defaults:
       type: "projects"
     values:
       layout: project
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Jekyll SEO Tag settings
+tagline: Art & Design Studio Exploring New Technologies
+logo: /assets/images/reach.webp

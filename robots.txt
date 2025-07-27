@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://untold.garden/sitemap.xml
+
+# Block crawling of admin areas
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /_site/
+
+# Allow important pages
+Allow: /projects/
+Allow: /about-us/
+Allow: /commissions/
