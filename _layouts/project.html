@@ -37,6 +37,61 @@
     
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
     <style>
+        /* Updated: Nov 1, 2025 - Reduced top spacing - Force override */
+        body.project-page {
+            background-color: #fafafa !important;
+            display: block !important;
+            padding-top: 0 !important;
+            min-height: 0 !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            height: auto !important;
+        }
+        
+        body.project-page html, body.project-page {
+            height: auto !important;
+            min-height: auto !important;
+        }
+        
+        #icons-container {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        main {
+            height: auto !important;
+            display: block !important;
+            padding-top: 0 !important;
+            min-height: 0 !important;
+            align-items: flex-start !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Kievit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+        }
+        
+        h1 {
+            font-size: 2rem !important;
+        }
+        
+        .container {
+            margin-top: 0 !important;
+            padding-top: 60px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-bottom: auto !important;
+            position: relative !important;
+            top: 0 !important;
+        }
+        
+        #backButton {
+            position: fixed !important;
+            top: 10px !important;
+            z-index: 1000 !important;
+        }
+        
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -52,9 +107,37 @@
             height: 100%;
             border: none;
         }
+        
+        @media (max-width: 768px) {
+            #backButton {
+                display: none !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            #icons-container {
+                display: none !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            html, body {
+                height: auto !important;
+                min-height: auto !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            .container {
+                padding-top: 1.5rem !important;
+                margin-top: 0 !important;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="project-page">
     <div id="icons-container"></div>
     <button id="backButton" aria-label="Go back">
         <svg class="icon-back">

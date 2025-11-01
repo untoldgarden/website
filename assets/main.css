@@ -1,47 +1,81 @@
-body,
 html {
     height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     margin: 0;
-
-    font-family: 'Charter';
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 0;
     width: 100%;
     max-width: 100%;
+    overflow-x: hidden;
+    background-color: #000;
 }
+
 body {
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    margin: 0;
+    padding: 0;
+    font-family: 'Charter';
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    background-color: #000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
 
-  #background-container {
-    overflow: hidden; /* Ensure no overflow */
-    max-width: 100vw; /* Limit width */
+/* iOS specific: ensure body fills viewport including safe areas */
+@supports (padding: max(0px)) {
+    body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+#background-container {
+    overflow: hidden;
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    z-index: -100;
+    pointer-events: none;
+    background-color: #000;
 }
 
 #video-background {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    /* Make sure the video stays behind other content */
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    z-index: -50;
     overflow: hidden;
     pointer-events: none;
-    /* Makes the video non-interactive */
-    width: calc(100% + 2px); /* Add 2px total (1px each side) */
-    height: calc(100% + 2px); /* Add 2px total (1px each side) */
-    margin: -1px; /* Negative margin to compensate */
+    background-color: #000;
 }
 
-/* This is crucial: It ensures that the iframe created by Vimeo fills the video-background container */
 #video-background iframe {
     position: absolute;
-    /* Positioning relative to the #video-background div */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border: none;
+}
+
+#video-background.mobile-embed iframe {
+    width: 100vw;
+    height: 100vh;
 }
 
 .vimeo {
@@ -144,6 +178,10 @@ main {
     font-weight: 400;
     font-size: 1.4em;
     letter-spacing: 0.05em;
+    /* Add safe area support for iOS */
+    padding-top: max(20px, env(safe-area-inset-top));
+    position: relative;
+    z-index: 100;
 }
 
 
@@ -248,75 +286,65 @@ a {
 /* Add a media query for smaller screens */
 @media (max-width: 768px) {
 
+    body {
+        padding-top: env(safe-area-inset-top);
+    }
+
     body .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-top: 50px;
-        padding-bottom: 15px;
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        flex-direction: row;
+        align-items: stretch;
+        padding: 0;
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
+        background: transparent;
+    }
+    
+    body .logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        padding: 20px 25px;
+        padding-top: max(20px, calc(env(safe-area-inset-top) + 10px));
+        font-size: 1.2em;
     }
 
 
     body .navigation {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        margin-top: 8px;
+        flex-direction: row;
+        align-items: stretch;
         width: 100%;
+        gap: 0;
+        margin: 0;
     }
-    
+
     body .navigation a {
-        padding: 3px 0;
-        display: block;
-        width: auto;
-        font-size: 1.1em;
-
+        flex: 1;
+        text-align: center;
+        padding: 40px 10px 10px 10px;
+        position: relative;
+        font-size: 0.9em;
     }
     
-    .logo {
-        margin-bottom: 20px;
-        font-size: 1.3em;
-    }
-
-
-    #backButton {
-        display: block; /* Show the button instead of hiding it */
-        width: 50px; /* Smaller button */
-        height: 50px; /* Smaller button */
-        left: 0px; /* Align with content container padding */
-        top: 15px;
-        z-index: 1100;
+    body .navigation a::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 1px;
+        height: 55%;
+        background: rgba(255, 255, 255, 0.3);
     }
     
-    .icon-back {
-        width: 32px; /* Match smaller button size */
-        height: 32px;
+    body .navigation a:last-child::after {
+        display: none;
     }
-    
-    #icons-container {
-        height: 70px; 
-    }
-    
-    .container {
-        padding: 30px;       /* Slightly smaller padding on mobile */
-        font-size: 1em;      /* Slightly smaller font size on mobile */
-    }
-    .container img {
-        max-width: 100%;
-        height: auto;
-    }
-    /* Project list page - increase top spacing */
-    .projects-list {
-        padding-top: 30px;
-    }
-    
-    /* Landing page - stack navigation vertically */
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-}
 
 @font-face {
     font-family: 'Kievit';
@@ -366,4 +394,3 @@ a {
     font-style: italic;
     font-display: swap;
 }
-
