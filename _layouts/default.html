@@ -338,6 +338,7 @@
         (function() {
             const VIMEO_URL = 'https://vimeo.com/1047666931/e9bd2fa0b0';
             const STORAGE_KEY = 'untold-garden-video-initialized';
+            const isMobile = window.innerWidth < 768;
             const videoContainer = document.getElementById('video-background');
             const playOverlay = document.getElementById('play-button-overlay');
             
@@ -350,6 +351,7 @@
             let hasUserInteracted = localStorage.getItem(STORAGE_KEY) === 'true';
 
             console.log('Vimeo video background initialized');
+            console.log('Is mobile:', isMobile);
             console.log('Has user interacted before:', hasUserInteracted);
 
             // Initialize Vimeo player
@@ -366,7 +368,7 @@
                     speed: true,
                     pip: false,
                     controls: false,
-                    autoplay: hasUserInteracted // Only autoplay if they've interacted before
+                    autoplay: !isMobile || hasUserInteracted // Autoplay on desktop always, on mobile only if they've interacted
                 };
 
                 player = new Vimeo.Player(videoContainer, options);
@@ -374,7 +376,9 @@
                 player.on('play', function() {
                     console.log('Vimeo video started playing');
                     videoContainer.classList.add('loaded');
-                    playOverlay.style.display = 'none';
+                    if (isMobile) {
+                        playOverlay.style.display = 'none';
+                    }
                 });
 
                 player.on('error', function(error) {
@@ -383,7 +387,7 @@
 
                 player.ready().then(function() {
                     console.log('Vimeo player ready');
-                    if (hasUserInteracted) {
+                    if (!isMobile || hasUserInteracted) {
                         player.play().catch(function(error) {
                             console.log('Autoplay failed:', error);
                         });
@@ -391,7 +395,7 @@
                 });
             }
 
-            // Handle first-time play button click
+            // Handle first-time play button click (mobile only)
             function handleFirstPlay() {
                 console.log('User clicked play button');
                 localStorage.setItem(STORAGE_KEY, 'true');
@@ -405,19 +409,26 @@
                 }
             }
 
-            // Set up play button click
-            playOverlay.addEventListener('click', handleFirstPlay);
-            playOverlay.addEventListener('touchstart', handleFirstPlay);
+            // Set up play button click (mobile only)
+            if (isMobile) {
+                playOverlay.addEventListener('click', handleFirstPlay);
+                playOverlay.addEventListener('touchstart', handleFirstPlay);
+            }
 
             // Initialize the player
             initializePlayer();
 
-            // Show or hide play overlay based on user history
-            if (hasUserInteracted) {
-                playOverlay.style.display = 'none';
+            // Show or hide play overlay based on device and user history (mobile only)
+            if (isMobile) {
+                if (hasUserInteracted) {
+                    playOverlay.style.display = 'none';
+                } else {
+                    playOverlay.style.display = 'flex';
+                    console.log('Showing play button overlay for first-time mobile user');
+                }
             } else {
-                playOverlay.style.display = 'flex';
-                console.log('Showing play button overlay for first-time user');
+                playOverlay.style.display = 'none';
+                console.log('Desktop detected, hiding play button overlay');
             }
         })();
     </script>
