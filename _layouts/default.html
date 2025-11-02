@@ -162,16 +162,66 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -50;
-            object-fit: cover;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
             opacity: 0;
-            transition: opacity 0.5s ease-in;
+            transition: opacity 0.3s ease-in;
+            pointer-events: none;
+            background-color: #000;
+            z-index: 2;
+        }
+        
+        @supports (-webkit-touch-callout: none) {
+            /* iOS specific - scale to cover bottom bar */
+            #video-background {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+        
+        #video-background iframe {
+            position: absolute !important;
+            top: 0 !important;
+            left: 50% !important;
+            width: 177.78vh !important;
+            height: 100vh !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
+            transform: translateX(-50%) !important;
+            border: none !important;
+        }
+        
+        #video-background.mobile-embed iframe {
+            position: absolute !important;
+            top: 0 !important;
+            left: 50% !important;
+            width: 177.78vh !important;
+            height: 100vh !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
+            transform: translateX(-50%) !important;
         }
 
-        #video-background.loaded {
-            opacity: 1 !important;
+        @media (max-width: 767px) {
+            #video-background {
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+            }
+            
+            #video-background iframe {
+                position: absolute !important;
+                top: 0 !important;
+                left: 50% !important;
+                width: 177.78vh !important;
+                height: 100vh !important;
+                min-width: 100vw !important;
+                min-height: 100vh !important;
+                transform: translateX(-50%) !important;
+                border: none !important;
+            }
         }
 
         .header {
@@ -255,75 +305,119 @@
             }
         }
         
+        #video-background.loaded {
+            opacity: 1;
+        }
+        
         #video-background.mobile-embed {
             background-color: #000;
+        }
+
+        #video-background.mobile-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
         }
     </style>
 </head>
 
 <body>
     <div id="background-container"></div>
-    <video id="video-background" autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -50; object-fit: cover; opacity: 0; transition: 0.5s opacity;">
-        <source src="{{ site.baseurl }}/assets/video/showreel_mobile.mp4" type="video/mp4">
-    </video>
+    <div id="video-background"></div>
+    <div id="play-button-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.3); cursor: pointer;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));">
+            <circle cx="40" cy="40" r="38" stroke="white" stroke-width="2"/>
+            <polygon points="32,24 32,56 56,40" fill="white"/>
+        </svg>
+    </div>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         (function() {
-            const videoElement = document.getElementById('video-background');
+            const VIMEO_URL = 'https://vimeo.com/1047666931/e9bd2fa0b0';
+            const STORAGE_KEY = 'untold-garden-video-initialized';
+            const videoContainer = document.getElementById('video-background');
+            const playOverlay = document.getElementById('play-button-overlay');
             
-            if (!videoElement) {
-                console.log('Video element not found');
+            if (!videoContainer) {
+                console.log('Video container not found');
                 return;
             }
 
-            console.log('HTML5 video background initialized');
+            let player = null;
+            let hasUserInteracted = localStorage.getItem(STORAGE_KEY) === 'true';
 
-            // Show video when it starts playing
-            videoElement.addEventListener('play', function() {
-                console.log('Video started playing');
-                videoElement.classList.add('loaded');
-            });
+            console.log('Vimeo video background initialized');
+            console.log('Has user interacted before:', hasUserInteracted);
 
-            // Show video when data loads
-            videoElement.addEventListener('loadeddata', function() {
-                console.log('Video data loaded');
-                // Make video visible even if not playing yet (for tap-to-play)
-                if (videoElement.paused) {
-                    videoElement.style.opacity = '0.5';
-                }
-            });
+            // Initialize Vimeo player
+            function initializePlayer() {
+                const options = {
+                    url: VIMEO_URL,
+                    loop: true,
+                    background: true,
+                    muted: true,
+                    byline: false,
+                    title: false,
+                    quality: 'auto',
+                    responsive: true,
+                    speed: true,
+                    pip: false,
+                    controls: false,
+                    autoplay: hasUserInteracted // Only autoplay if they've interacted before
+                };
 
-            // Handle errors
-            videoElement.addEventListener('error', function(e) {
-                console.log('Video error:', e);
-            });
+                player = new Vimeo.Player(videoContainer, options);
 
-            // Try to play immediately
-            var playPromise = videoElement.play();
-            if (playPromise !== undefined) {
-                playPromise.then(function() {
-                    console.log('Autoplay succeeded');
-                }).catch(function(error) {
-                    console.log('Autoplay failed:', error.message);
-                    // Set up tap-to-play fallback
-                    setTimeout(function() {
-                        if (videoElement.paused) {
-                            console.log('Video still paused after 500ms, setting up tap to play');
-                            // Make video faintly visible to indicate it's ready to play
-                            videoElement.style.opacity = '0.3';
-                            var playOnTap = function() {
-                                console.log('User tapped, playing video');
-                                videoElement.play().catch(function(e) {
-                                    console.log('Play on tap failed:', e);
-                                });
-                                videoElement.classList.add('loaded');
-                            };
-                            document.addEventListener('touchstart', playOnTap, { once: true });
-                            document.addEventListener('click', playOnTap, { once: true });
-                        }
-                    }, 500);
+                player.on('play', function() {
+                    console.log('Vimeo video started playing');
+                    videoContainer.classList.add('loaded');
+                    playOverlay.style.display = 'none';
                 });
+
+                player.on('error', function(error) {
+                    console.log('Vimeo error:', error);
+                });
+
+                player.ready().then(function() {
+                    console.log('Vimeo player ready');
+                    if (hasUserInteracted) {
+                        player.play().catch(function(error) {
+                            console.log('Autoplay failed:', error);
+                        });
+                    }
+                });
+            }
+
+            // Handle first-time play button click
+            function handleFirstPlay() {
+                console.log('User clicked play button');
+                localStorage.setItem(STORAGE_KEY, 'true');
+                playOverlay.style.display = 'none';
+                hasUserInteracted = true;
+                
+                if (player) {
+                    player.play().catch(function(error) {
+                        console.log('Play on user interaction failed:', error);
+                    });
+                }
+            }
+
+            // Set up play button click
+            playOverlay.addEventListener('click', handleFirstPlay);
+            playOverlay.addEventListener('touchstart', handleFirstPlay);
+
+            // Initialize the player
+            initializePlayer();
+
+            // Show or hide play overlay based on user history
+            if (hasUserInteracted) {
+                playOverlay.style.display = 'none';
+            } else {
+                playOverlay.style.display = 'flex';
+                console.log('Showing play button overlay for first-time user');
             }
         })();
     </script>
