@@ -288,6 +288,10 @@
             // Show video when data loads
             videoElement.addEventListener('loadeddata', function() {
                 console.log('Video data loaded');
+                // Make video visible even if not playing yet (for tap-to-play)
+                if (videoElement.paused) {
+                    videoElement.style.opacity = '0.5';
+                }
             });
 
             // Handle errors
@@ -306,9 +310,14 @@
                     setTimeout(function() {
                         if (videoElement.paused) {
                             console.log('Video still paused after 500ms, setting up tap to play');
+                            // Make video faintly visible to indicate it's ready to play
+                            videoElement.style.opacity = '0.3';
                             var playOnTap = function() {
                                 console.log('User tapped, playing video');
-                                videoElement.play();
+                                videoElement.play().catch(function(e) {
+                                    console.log('Play on tap failed:', e);
+                                });
+                                videoElement.classList.add('loaded');
                             };
                             document.addEventListener('touchstart', playOnTap, { once: true });
                             document.addEventListener('click', playOnTap, { once: true });
