@@ -325,215 +325,65 @@
 
 <body>
     <div id="background-container"></div>
-    <div id="video-background"></div>
+    <video id="video-background" autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -50; object-fit: cover; opacity: 0; transition: 0.5s opacity;">
+        <source src="{{ site.baseurl }}/assets/video/showreel_mobile.mp4" type="video/mp4">
+    </video>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         (function() {
-            const DESKTOP_VIDEO_URL = 'https://vimeo.com/1047666931/e9bd2fa0b0';
-            const MOBILE_VIDEO_URL = 'https://vimeo.com/1061053405/3faa6f7993';
-            const mobileBreakpoint = window.matchMedia('(max-width: 767px)');
-            const coarsePointerQuery = window.matchMedia('(pointer: coarse)');
-            const videoBackground = document.getElementById('video-background');
-            const isMobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
-            let player = null;
-            let currentVariant = null;
-            let playerQueue = Promise.resolve();
-            let isInitialized = false;
+            const videoElement = document.getElementById('video-background');
+            
+            if (!videoElement) {
+                console.log('Video element not found');
+                return;
+            }
 
-            const shouldUseMobileVideo = () => {
-                if (mobileBreakpoint.matches) {
-                    return true;
-                }
+            console.log('HTML5 video background initialized');
 
-                if (coarsePointerQuery.media && coarsePointerQuery.media !== 'not all' && coarsePointerQuery.matches) {
-                    return true;
-                }
+            // Show video when it starts playing
+            videoElement.addEventListener('play', function() {
+                console.log('Video started playing');
+                videoElement.classList.add('loaded');
+            });
 
-                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                    return true;
-                }
+            // Show video when data loads
+            videoElement.addEventListener('loadeddata', function() {
+                console.log('Video data loaded');
+            });
 
-                if (isMobileUserAgent) {
-                    return true;
-                }
+            // Handle errors
+            videoElement.addEventListener('error', function(e) {
+                console.log('Video error:', e);
+            });
 
-                return false;
-            };
-
-            const destroyPlayer = () => {
-                if (!player) {
-                    return Promise.resolve();
-                }
-
-                const existing = player;
-                player = null;
-                return existing.destroy().catch(function (error) {
-                    console.log('Vimeo destroy failed:', error);
-                });
-            };
-
-            const createPlayer = (variant) => {
-                const options = variant === 'mobile'
-                    ? {
-                        url: MOBILE_VIDEO_URL,
-                        loop: true,
-                        autoplay: true,
-                        background: true,
-                        controls: false,
-                        byline: false,
-                        title: false,
-                        dnt: true,
-                        muted: true,
-                        autopause: false,
-                        pip: false,
-                        responsive: true
-                    }
-                    : {
-                        url: DESKTOP_VIDEO_URL,
-                        loop: true,
-                        autoplay: true,
-                        background: true,
-                        muted: true,
-                        byline: false,
-                        title: false,
-                        quality: 'auto',
-                        responsive: true,
-                        speed: true,
-                        pip: false,
-                        controls: false
-                    };
-
-                videoBackground.classList.toggle('mobile-embed', variant === 'mobile');
-                videoBackground.classList.remove('loaded');
-                videoBackground.innerHTML = '';
-
-                try {
-                    player = new Vimeo.Player('video-background', options);
-                } catch (error) {
-                    console.log('Failed to create Vimeo player:', error);
-                    player = null;
-                    return;
-                }
-
-                player.setVolume(0);
-
-                var playAttempted = false;
-
-                player.on('play', function () {
-                    console.log('Video started playing');
-                    videoBackground.classList.add('loaded');
-                    playAttempted = true;
-                });
-
-                player.ready().then(function() {
-                    console.log('Player ready');
-                });
-
-                // Try to play on loadeddata
-                player.on('loadeddata', function() {
-                    console.log('Video data loaded, calling play()');
-                    if (!playAttempted) {
-                        player.play().catch(function (error) {
-                            console.log('Play on loadeddata failed:', error);
-                        });
-                    }
-                });
-
-                // Add a user interaction fallback
-                setTimeout(function() {
-                    player.getPaused().then(function(paused) {
-                        if (paused && !playAttempted) {
-                            console.log('Video still paused after 3s, setting up tap to play');
+            // Try to play immediately
+            var playPromise = videoElement.play();
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    console.log('Autoplay succeeded');
+                }).catch(function(error) {
+                    console.log('Autoplay failed:', error.message);
+                    // Set up tap-to-play fallback
+                    setTimeout(function() {
+                        if (videoElement.paused) {
+                            console.log('Video still paused after 500ms, setting up tap to play');
                             var playOnTap = function() {
                                 console.log('User tapped, playing video');
-                                player.play().catch(function(e) {
-                                    console.log('Play on tap failed:', e);
-                                });
-                                playAttempted = true;
+                                videoElement.play();
                             };
                             document.addEventListener('touchstart', playOnTap, { once: true });
                             document.addEventListener('click', playOnTap, { once: true });
                         }
-                    }).catch(function(e) {
-                        console.log('getPaused failed:', e);
-                    });
-                }, 3000);
-
-                player.on('error', function (error) {
-                    console.log('Vimeo error event:', error);
+                    }, 500);
                 });
-            };
-
-            const ensurePlayer = (variant) => {
-                if (variant === currentVariant && player) {
-                    return;
-                }
-
-                currentVariant = variant;
-                playerQueue = playerQueue
-                    .then(destroyPlayer)
-                    .then(function () {
-                        console.log('Switching background video to', variant, 'variant');
-                        createPlayer(variant);
-                    })
-                    .catch(function (error) {
-                        console.log('Vimeo init failed:', error);
-                    });
-            };
-
-            const evaluateVariant = () => {
-                const variant = shouldUseMobileVideo() ? 'mobile' : 'desktop';
-                ensurePlayer(variant);
-            };
-
-            const initialize = () => {
-                if (isInitialized) return;
-                isInitialized = true;
-                evaluateVariant();
-            };
-
-            // Initialize on DOM ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initialize);
-            } else {
-                initialize();
             }
-
-            // Reinitialize on page visibility change (handles back button)
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden && videoBackground) {
-                    isInitialized = false;
-                    initialize();
-                }
-            });
-
-            // Handle page show event (bfcache)
-            window.addEventListener('pageshow', function(event) {
-                if (event.persisted) {
-                    isInitialized = false;
-                    initialize();
-                }
-            });
-
-            const addChangeListener = (mediaQueryList, handler) => {
-                if (!mediaQueryList) {
-                    return;
-                }
-
-                if (typeof mediaQueryList.addEventListener === 'function') {
-                    mediaQueryList.addEventListener('change', handler);
-                } else if (typeof mediaQueryList.addListener === 'function') {
-                    mediaQueryList.addListener(handler);
-                }
-            };
-
-            addChangeListener(mobileBreakpoint, evaluateVariant);
-            addChangeListener(coarsePointerQuery, evaluateVariant);
-
-            window.addEventListener('orientationchange', evaluateVariant);
-            window.addEventListener('resize', evaluateVariant);
         })();
+        
+        // Vimeo player initialization stub - kept for compatibility
+        (function() {
+            const DESKTOP_VIDEO_URL = 'https://vimeo.com/1047666931/e9bd2fa0b0';
+            const MOBILE_VIDEO_URL = 'https://vimeo.com/1061053405/3faa6f7993';
     </script>
 
     <div class="header">
