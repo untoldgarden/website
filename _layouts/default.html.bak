@@ -330,8 +330,8 @@
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         (function() {
-            const DESKTOP_VIDEO_URL = 'https://vimeo.com/1047666931/e9bd2fa0b0';
-            const MOBILE_VIDEO_URL = 'https://vimeo.com/1061053405/3faa6f7993';
+            const DESKTOP_VIDEO_URL = 'https://player.vimeo.com/video/1047666931?h=e9bd2fa0b0';
+            const MOBILE_VIDEO_URL = 'https://player.vimeo.com/video/1061053405?h=3faa6f7993';
             const mobileBreakpoint = window.matchMedia('(max-width: 767px)');
             const coarsePointerQuery = window.matchMedia('(pointer: coarse)');
             const videoBackground = document.getElementById('video-background');
@@ -379,7 +379,7 @@
                         url: MOBILE_VIDEO_URL,
                         loop: true,
                         autoplay: true,
-                        background: true,
+                        background: false,
                         controls: false,
                         byline: false,
                         title: false,
@@ -387,6 +387,7 @@
                         muted: true,
                         autopause: false,
                         pip: false,
+                        playsinline: true,
                         responsive: true
                     }
                     : {
@@ -418,50 +419,18 @@
 
                 player.setVolume(0);
 
-                var playAttempted = false;
-
                 player.on('play', function () {
-                    console.log('Video started playing');
                     videoBackground.classList.add('loaded');
-                    playAttempted = true;
                 });
 
                 player.ready().then(function() {
-                    console.log('Player ready');
-                });
-
-                // Try to play on loadeddata
-                player.on('loadeddata', function() {
-                    console.log('Video data loaded, calling play()');
-                    if (!playAttempted) {
-                        player.play().catch(function (error) {
-                            console.log('Play on loadeddata failed:', error);
-                        });
-                    }
-                });
-
-                // Add a user interaction fallback
-                setTimeout(function() {
-                    player.getPaused().then(function(paused) {
-                        if (paused && !playAttempted) {
-                            console.log('Video still paused after 3s, setting up tap to play');
-                            var playOnTap = function() {
-                                console.log('User tapped, playing video');
-                                player.play().catch(function(e) {
-                                    console.log('Play on tap failed:', e);
-                                });
-                                playAttempted = true;
-                            };
-                            document.addEventListener('touchstart', playOnTap, { once: true });
-                            document.addEventListener('click', playOnTap, { once: true });
-                        }
-                    }).catch(function(e) {
-                        console.log('getPaused failed:', e);
+                    player.play().catch(function (error) {
+                        console.log('Autoplay failed:', error);
                     });
-                }, 3000);
+                });
 
                 player.on('error', function (error) {
-                    console.log('Vimeo error event:', error);
+                    console.log('Vimeo error:', error);
                 });
             };
 
