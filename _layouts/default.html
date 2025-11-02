@@ -245,6 +245,12 @@
             font-size: 0.9em;
         }
         
+        .navigation a::after,
+        .navigation a::before {
+            display: none !important;
+            content: none !important;
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding-top: env(safe-area-inset-top);
@@ -288,20 +294,6 @@
                 padding: 40px 10px 10px 10px !important;
                 position: relative !important;
                 font-size: 0.9em !important;
-            }
-            
-            .navigation a::after {
-                content: '' !important;
-                position: absolute !important;
-                right: 0 !important;
-                bottom: 0 !important;
-                width: 1px !important;
-                height: 55% !important;
-                background: rgba(255, 255, 255, 0.3) !important;
-            }
-            
-            .navigation a:last-child::after {
-                display: none !important;
             }
         }
         

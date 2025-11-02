@@ -270,7 +270,7 @@ a {
     text-align: center;
     font-size: 0.8em;
     color: #666;
-    font-family: 'Kievit';
+    font-family: 'Kievit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
     margin-top: 150px;
     margin-bottom: 20px;
 }
@@ -330,18 +330,10 @@ a {
         font-size: 0.9em;
     }
     
-    body .navigation a::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 1px;
-        height: 55%;
-        background: rgba(255, 255, 255, 0.3);
-    }
-    
-    body .navigation a:last-child::after {
-        display: none;
+    .navigation a::after,
+    .navigation a::before {
+        display: none !important;
+        content: none !important;
     }
 
 @font-face {
